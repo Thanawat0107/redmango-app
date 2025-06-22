@@ -5,25 +5,24 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { COLORS, MainLoader } from "../common";
 import { Ionicons, SimpleLineIcons, Fontisto } from "@expo/vector-icons";
 import { baseUrl } from "../common/SD";
-import styles from "../ui/MenuItemDetailScreen.style";
-import FormButton1 from "../ui/FormButton1";
+import { FormButton1 } from "../ui";
 import { useGetMenuItemByIdQuery } from "../redux/apis/menuItemApi";
+import styles from "../ui/MenuItemDetailScreen.style";
 
 type Props = NativeStackScreenProps<RootStackParamList, "MenuItemDetailScreen">;
 
 export default function MenuItemDetailScreen({ navigation, route }: Props) {
   const { id } = route.params;
   const { data: item, isLoading } = useGetMenuItemByIdQuery(id);
-  const [count, setCount] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
+  const handleQuantity = (counter: number) => {
+    let newQuantity = quantity + counter;
+    if (newQuantity == 0) {
+      newQuantity = 1;
     }
+    setQuantity(newQuantity);
+    return;
   };
 
   return (
@@ -62,12 +61,12 @@ export default function MenuItemDetailScreen({ navigation, route }: Props) {
               </View>
 
               <View style={styles.countRow}>
-                <TouchableOpacity onPress={() => increment()}>
+                <TouchableOpacity onPress={() => handleQuantity(1)}>
                   <SimpleLineIcons name="plus" size={20} />
                 </TouchableOpacity>
-                <Text style={styles.countText}>{count}</Text>
+                <Text style={styles.countText}>{quantity}</Text>
 
-                <TouchableOpacity onPress={() => decrement()}>
+                <TouchableOpacity onPress={() => handleQuantity(-1)}>
                   <SimpleLineIcons name="minus" size={20} />
                 </TouchableOpacity>
               </View>
