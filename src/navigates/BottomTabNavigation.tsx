@@ -2,21 +2,23 @@ import { StyleSheet, View } from "react-native";
 import React, { useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { HomeScreen, ShoppingCartScreen } from "../screen";
 import StackNavigation from "./StackNavigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { SIZES } from "../common";
 import { useDispatch } from "react-redux";
 import { useGetShoppingCartQuery } from "../redux/apis/shoppingCartApi";
 import { userTest } from "../common/SD";
-import HomeScreen from "../screen/HomeScreen";
 import { setShoppingCart } from "../redux/shoppingCartSlice";
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabNavigation() {
   const dispatch = useDispatch();
-  const { data, isLoading } = useGetShoppingCartQuery(userTest);
-
+  const { data, isLoading } = useGetShoppingCartQuery(
+    userTest
+  );
+  
   useEffect(() => {
     if (!isLoading) {
       console.log(data.result);
@@ -49,7 +51,7 @@ export default function BottomTabNavigation() {
           })}
         >
           <Tab.Screen name="HOME" component={StackNavigation} />
-          <Tab.Screen name="CART" component={HomeScreen} />
+          <Tab.Screen name="CART" component={ShoppingCartScreen} />
           <Tab.Screen name="SETTING" component={HomeScreen} />
         </Tab.Navigator>
       </View>
@@ -62,6 +64,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "center",
-    paddingTop: SIZES.xLarge,
+    paddingTop:SIZES.xLarge,
   },
 });
