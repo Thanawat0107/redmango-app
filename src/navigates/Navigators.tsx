@@ -14,7 +14,7 @@ export default function Navigators() {
         <Tab.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ color, size }) => {
-              let iconName:any;
+              let iconName: any;
 
               if (route.name === "HOME") {
                 iconName = "home";
@@ -29,6 +29,7 @@ export default function Navigators() {
             },
             tabBarActiveTintColor: "tomato",
             tabBarInactiveTintColor: "gray",
+            headerShown: false,
           })}
         >
           <Tab.Screen name="HOME" component={HomeScreen} />
