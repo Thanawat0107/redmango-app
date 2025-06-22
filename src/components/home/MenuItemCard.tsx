@@ -1,23 +1,38 @@
-import { Text, TouchableOpacity, View, Image } from "react-native";
-import React from "react";
-import menuItemModel from "../../interfaces";
+import { Text, TouchableOpacity, View,Image } from 'react-native'
+import React, { useState } from 'react'
+import  menuItemModel  from '../../interfaces';
 import styles from './MenuItemCard.style';
-import { baseUrl } from "../../common/SD";
+import { baseUrl, userTest } from '../../common/SD';
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "../../common/theme";
+import { COLORS, MainLoader } from '../../common';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigates';
+import { useUpdateShoppingCartMutation } from '../../redux/apis/shoppingCartApi';
 
 interface Props {
   menuItem: menuItemModel;
 }
 
-const MenuItemCard = (item: Props) => {
-    const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+export default function MenuItemCard(item: Props) {
+  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+  const [isAddingToCart, setIsAddingToCart] = useState<boolean>(false);
+  const [updateShoppingCart] = useUpdateShoppingCartMutation();
+  
+  const handleAddToCart = async (menuItemId: number) => {
+    setIsAddingToCart(true);
+    const response = await updateShoppingCart({
+      menuItemId: menuItemId,
+      updateQuantityBy: 1,
+      userId: userTest,
+    });
+    console.log(response);
+    setTimeout(() => {
+      setIsAddingToCart(false);
+    }, 1000);
+  };
+  
   return (
-    <TouchableOpacity
-      onPress={() => navigate("MenuItemDetailScreen", { id: item.menuItem.id })}
-    >
+    <TouchableOpacity onPress={() => navigate('MenuItemDetailScreen',{id : item.menuItem.id})}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
@@ -45,12 +60,16 @@ const MenuItemCard = (item: Props) => {
           </Text>
           <Text style={styles.price}>${item.menuItem.price}</Text>
         </View>
-        <TouchableOpacity style={styles.addBtn}>
-          <Ionicons name="add-circle" size={35} color={COLORS.primary} />
-        </TouchableOpacity>
+        {isAddingToCart ? (
+          <TouchableOpacity style={styles.addBtn}>
+            <MainLoader />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.addBtn} onPress={()=>handleAddToCart(item.menuItem.id)}>
+            <Ionicons name="add-circle" size={35} color={COLORS.primary} />
+          </TouchableOpacity>
+        )}
       </View>
     </TouchableOpacity>
   );
-};
-
-export default MenuItemCard;
+}
