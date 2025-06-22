@@ -1,7 +1,7 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text } from "react-native";
-import Navigators from "./src/navigates/Navigators";
-import { useFonts } from "expo-font";
+import { StatusBar } from 'expo-status-bar';
+import { MainNavigators } from './src/navigates';
+import { Text } from 'react-native';
+import { useFonts } from 'expo-font';
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -18,20 +18,11 @@ export default function App() {
   if (!fontsLoaded && !fontError) {
     return <Text>Font loading...</Text>;
   }
-  
+
   return (
     <>
-      <Navigators />
+      <MainNavigators/>
       <StatusBar style="dark" />
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

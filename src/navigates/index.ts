@@ -1,3 +1,4 @@
-import Navigators from "./Navigators";
+import MainNavigators from "./BottomTabNavigation";
+import { RootStackParamList } from "./typeRootStack";
 
-export default { Navigators };
+export { MainNavigators, RootStackParamList };
