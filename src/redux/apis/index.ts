@@ -1,3 +1,4 @@
 import menuItemApi from "./menuItemApi";
+import shoppingCartApi from "./shoppingCartApi";
 
-export default { menuItemApi };
+export { menuItemApi, shoppingCartApi };
