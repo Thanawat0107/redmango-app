@@ -68,10 +68,28 @@ export default function BottomTabNavigation() {
             headerShown: false,
           })}
         >
-          <Tab.Screen name="HOME" component={StackNavigation} />
-          <Tab.Screen name="CART" component={ShoppingCartScreen} />
-          <Tab.Screen name="SETTING" component={HomeScreen} />
-          <Tab.Screen name="PROFILE" component={ProfileScreen} />
+          <Tab.Screen
+            name="HOME"
+            component={StackNavigation}
+            initialParams={{ screen: "HomeScreen" }}
+          />
+
+          <Tab.Screen
+            name="CART"
+            component={StackNavigation}
+            initialParams={{ screen: "ShoppingCartScreen" }}
+          />
+
+          <Tab.Screen
+            name="SETTING"
+            component={StackNavigation}
+            initialParams={{ screen: "HomeScreen" }}
+          />
+          <Tab.Screen
+            name="PROFILE"
+            component={StackNavigation}
+            initialParams={{ screen: "ProfileScreen" }}
+          />
         </Tab.Navigator>
       </View>
     </NavigationContainer>

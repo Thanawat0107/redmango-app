@@ -24,10 +24,10 @@ export default function ProfileScreen() {
   const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
 
   const userData = {
-    fullName: "Test Name",
-    id: "999",
-    email: "Test@email.com",
-    role: "admin",
+    fullName: "",
+    id: "",
+    email: "",
+    role: "",
   };
 
   const userLogout = async () => {};
