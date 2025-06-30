@@ -24,7 +24,7 @@ export default function BottomTabNavigation() {
     (state: RootState) => state.shoppingCartStore.cartItems ?? []
   );
   const dispatch = useDispatch();
-  const { data, isLoading } = useGetShoppingCartQuery(userTest);
+  const { data, isLoading } = useGetShoppingCartQuery(userData.id);
 
   useEffect(() => {
     if (!isLoading) {

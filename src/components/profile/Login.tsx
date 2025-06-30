@@ -77,7 +77,7 @@ export default function Login() {
 
   const initialData: loginDto = {
     username: "admin",
-    password: "123",
+    password: "aa",
   };
 
   return (

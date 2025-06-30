@@ -4,7 +4,7 @@ import { RootStackParamList } from "../navigates";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { COLORS, MainLoader } from "../common";
 import { Ionicons, SimpleLineIcons, Fontisto } from "@expo/vector-icons";
-import { baseUrl, userTest } from "../common/SD";
+import { baseUrl } from "../common/SD";
 import { FormButton1 } from "../ui";
 import { useGetMenuItemByIdQuery } from "../redux/apis/menuItemApi";
 import { useUpdateShoppingCartMutation } from "../redux/apis/shoppingCartApi";
@@ -45,7 +45,7 @@ export default function MenuItemDetailScreen({ navigation, route }: Props) {
     const response = await updateShoppingCart({
       menuItemId: menuItemId,
       updateQuantityBy: quantity,
-      userId: userTest,
+      userId: userData.id,
     });
     console.log(response);
     setIsAddingToCart(false);
