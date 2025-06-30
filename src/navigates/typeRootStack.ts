@@ -4,4 +4,5 @@ export type RootStackParamList = {
   ShoppingCartScreen: undefined;
   ProfileScreen: undefined;
   Login: undefined;
+  Register: undefined;
 };
