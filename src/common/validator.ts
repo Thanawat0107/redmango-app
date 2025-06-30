@@ -15,9 +15,9 @@ export const PickupDetailsSchema = Yup.object().shape({
 
 export const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
-  password: Yup.string()
-    .min(3, "Password must be at least 8 character")
-    .required("Required"),
+  // password: Yup.string()
+  //   .min(3, "Password must be at least 8 character")
+  //   .required("Required"),
 });
 
 export const RegisterSchema = Yup.object().shape({
