@@ -8,21 +8,21 @@ import { COLORS, MainLoader, PickupDetailsSchema } from "../../common";
 import { cartPickUpDto } from "../../interfaces/dto";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { cartItemModel } from "../../interfaces";
+import { apiResponse, cartItemModel } from "../../interfaces";
 import { useInitiatePaymentMutation } from "../../redux/apis/paymentApi";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../navigates";
 
 export default function CartPickUpDetails() {
-    const [initiatePayment] = useInitiatePaymentMutation();
-    const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
-    const userData = useSelector((state: RootState) => state.userAuthStore);
-    const [loading, setLoading] = useState(false);
-    const initialData: cartPickUpDto = {
-      name: userData.fullName!,
-      email: "Test@email.com",
-      phoneNumber: "1234599",
-    };
+  const [initiatePayment] = useInitiatePaymentMutation();
+  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+  const userData = useSelector((state: RootState) => state.userAuthStore);
+  const [loading, setLoading] = useState(false);
+  const initialData: cartPickUpDto = {
+    name: userData.fullName!,
+    email: "Test@email.com",
+    phoneNumber: "1234599",
+  };
 
   const shoppingCartFromStore: cartItemModel[] = useSelector(
     (state: RootState) => state.shoppingCartStore.cartItems ?? []
@@ -37,19 +37,17 @@ export default function CartPickUpDetails() {
     return null;
   });
 
-   const onSubmit = async (userInput: cartPickUpDto) => {
+  const onSubmit = async (userInput: cartPickUpDto) => {
     setLoading(true);
 
-    // const { data }: apiResponse = await initiatePayment(userData.id);
-    // const orderSummary = { grandTotal, totalItems };
-
+    const { data }: apiResponse = await initiatePayment(userData.id);
+    
     navigate("PaymentScreen", {
-      state: { apiResult: "Test data?.result", userInput },
+      state: { apiResult: data?.result, userInput },
     });
     
     setLoading(false);
   };
-
 
   return (
     <Formik
