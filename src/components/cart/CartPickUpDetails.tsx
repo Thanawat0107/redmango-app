@@ -11,12 +11,13 @@ import { RootState } from "../../redux/store";
 import { cartItemModel } from "../../interfaces";
 
 export default function CartPickUpDetails() {
-  const [loading, setLoading] = useState(false);
-  const initialData: cartPickUpDto = {
-    name: "Test name",
-    email: "Test@email.com",
-    phoneNumber: "1234567",
-  };
+    const userData = useSelector((state: RootState) => state.userAuthStore);
+    const [loading, setLoading] = useState(false);
+    const initialData: cartPickUpDto = {
+      name: userData.fullName!,
+      email: userData.email,
+      phoneNumber: "12345",
+    };
 
   const shoppingCartFromStore: cartItemModel[] = useSelector(
     (state: RootState) => state.shoppingCartStore.cartItems ?? []
