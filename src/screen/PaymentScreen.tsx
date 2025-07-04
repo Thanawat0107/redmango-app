@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigates/typeRootStack";
@@ -14,7 +14,7 @@ export default function PaymentScreen({ route }: Props) {
 
   const fetchPublishableKey = async () => {
     const key =
-      "pk_test_51P8zpLIwR8EpO71EF784dHKiY8YSwkizYywbXJq44oscWJXL3rqGHa8saQqKOEcTFBgr239jrKs8fjDxRbSDGQln00qbf0eLG5";
+      "pk_test_51M9JKILEJFIvBBF2XkujZkrsfTEzCwhb6Mju4cg46E92bFLupZh7FxanSKa17WqSqpfl3WuQ1K3AL2VbK1wCrg9200hagD6XvF";
     setPublishableKey(key);
   };
 
@@ -29,7 +29,11 @@ export default function PaymentScreen({ route }: Props) {
           <OrderSummary data={state.apiResult} userInput={state.userInput} />
         </View>
         <View style={{ flex: 0.2 }}>
-        <PaymentForm clientSecret={state.apiResult.clientSecret}/>
+          <PaymentForm
+            clientSecret={state.apiResult.clientSecret}
+            data={state.apiResult}
+            userInput={state.userInput}
+          />
         </View>
       </View>
     </StripeProvider>
