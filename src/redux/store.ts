@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { menuItemReducer } from "./menuItemSlice";
 import { shoppingCartReducer } from "./shoppingCartSlice";
-import { menuItemApi, shoppingCartApi, authApi, paymentApi } from "./apis";
+import { menuItemApi, shoppingCartApi, authApi, paymentApi, orderApi } from "./apis";
 import { userAuthReducer } from "./userAuthSlice";
 import devToolsEnhancer from "redux-devtools-expo-dev-plugin";
 
@@ -15,13 +15,15 @@ const store = configureStore({
     [shoppingCartApi.reducerPath]: shoppingCartApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [paymentApi.reducerPath]: paymentApi.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(menuItemApi.middleware)
       .concat(shoppingCartApi.middleware)
       .concat(authApi.middleware)
-      .concat(paymentApi.middleware),
+      .concat(paymentApi.middleware)
+      .concat(orderApi.middleware),
 
   devTools: false,
   enhancers: (getDefaultEnhancers) =>
