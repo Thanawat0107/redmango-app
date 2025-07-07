@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useGetAllOrdersQuery } from "../../redux/apis/orderApi";
 import { BackBtn1 } from "../../ui";
-import { OrderCard } from "../../components/order";
+import OrderCard from "../../components/order/OrderCard";
 
 export default function MyOrderScreen() {
   const userId = useSelector((state: RootState) => state.userAuthStore.id);
@@ -19,14 +19,16 @@ export default function MyOrderScreen() {
     <View style={styles.container}>
       <View style={styles.titleRow}>
         <BackBtn1 onPress={() => navigate("ProfileScreen")} />
-        <Text style={styles.titletxt}>Orders</Text>
+        <Text style={styles.titletxt}>
+          Orders ({!isLoading && data.result.length} items)
+        </Text>
       </View>
 
       {isLoading && <MainLoader />}
 
       {!isLoading && (
         <FlatList
-          contentContainerStyle={{ paddingBottom : 60 }}
+          contentContainerStyle={{ paddingBottom: 60 }}
           showsVerticalScrollIndicator={false}
           data={data.result}
           renderItem={({ item }) => (
