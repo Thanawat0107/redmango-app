@@ -1,12 +1,12 @@
 import { SD_Status } from "../../common/SD";
-import { shoppingCartModel } from "../../interfaces";
+import { cartItemModel } from "../../interfaces";
 
 export interface orderSummaryProps {
     data: {
         id?: number;
-        cartItems?: shoppingCartModel[];
-        cartTotal?: number;
         userId?: string;
+        cartItems?: cartItemModel[];
+        cartTotal?: number;
         stripePaymentIntentId?: string;
         status?: SD_Status;
     };
