@@ -9,4 +9,5 @@ export type RootStackParamList = {
   OrderConfirmed: { id: any };
   MyOrderScreen: undefined;
   OrderDetailScreen: { id: any };
+  AllOrderScreen: undefined;
 };
