@@ -7,4 +7,5 @@ export type RootStackParamList = {
   Register: undefined;
   PaymentScreen: { state: any };
   OrderConfirmed: { id: any };
+  MyOrderScreen: undefined;
 };
