@@ -56,12 +56,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  nextContainer : {
+  nextContainer: {
     flex: 1,
-    flexDirection:'row',
+    flexDirection: "row",
     paddingHorizontal: 10,
     justifyContent: "space-between",
-    alignItems:'center',
+    alignItems: "center",
+    marginTop: 10,
+    backgroundColor: COLORS.secondary,
   },
   statusContainer: (color: any) => ({
     borderColor: color,
