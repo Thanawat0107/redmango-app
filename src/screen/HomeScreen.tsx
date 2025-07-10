@@ -6,7 +6,7 @@ import MenuItemList from "../components/home/MenuItemList";
 
 export default function HomeScreen() {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.searchContainer}>
         <MenuSearchBar />
       </View>
