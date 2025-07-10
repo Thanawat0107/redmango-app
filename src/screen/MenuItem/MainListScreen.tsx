@@ -20,8 +20,10 @@ export default function MainListScreen() {
           <BackBtn1 size={35} onPress={() => navigate("ProfileScreen")} />
           <Text style={styles.titletxt}>MenuItem List</Text>
         </View>
-        
-        <TouchableOpacity onPress={()=>navigate("MenuItemUpsert")}>
+
+        <TouchableOpacity
+          onPress={() => navigate("MenuItemUpsert", { id: null })}
+        >
           <Ionicons name="add-circle-sharp" size={35} color={COLORS.primary1} />
         </TouchableOpacity>
       </View>
@@ -31,7 +33,7 @@ export default function MainListScreen() {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={data.result}
-          keyExtractor={(item)=>item.id}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => <MainCard menuItem={item} />}
           contentContainerStyle={styles.container}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
