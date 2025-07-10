@@ -15,6 +15,7 @@ import {
 import { RootStackParamList } from "./typeRootStack";
 import { Login, Register } from "../components/profile";
 import { OrderConfirmed } from "../components/order";
+import { MenuItemUpsert } from "../components/menu";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -58,7 +59,7 @@ export default function StackNavigation() {
           options={{ headerShown: false }}
         />
 
-         <Stack.Screen
+        <Stack.Screen
           name="PaymentScreen"
           component={PaymentScreen}
           options={{ headerShown: false }}
@@ -76,7 +77,7 @@ export default function StackNavigation() {
           options={{ headerShown: false }}
         />
 
-         <Stack.Screen
+        <Stack.Screen
           name="OrderDetailScreen"
           component={OrderDetailScreen}
           options={{ headerShown: false }}
@@ -93,7 +94,12 @@ export default function StackNavigation() {
           component={MainListScreen}
           options={{ headerShown: false }}
         />
-        
+
+        <Stack.Screen
+          name="MenuItemUpsert"
+          component={MenuItemUpsert}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </GestureHandlerRootView>
   );

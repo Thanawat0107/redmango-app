@@ -20,8 +20,8 @@ export default function MainListScreen() {
           <BackBtn1 size={35} onPress={() => navigate("ProfileScreen")} />
           <Text style={styles.titletxt}>MenuItem List</Text>
         </View>
-
-        <TouchableOpacity>
+        
+        <TouchableOpacity onPress={()=>navigate("MenuItemUpsert")}>
           <Ionicons name="add-circle-sharp" size={35} color={COLORS.primary1} />
         </TouchableOpacity>
       </View>
