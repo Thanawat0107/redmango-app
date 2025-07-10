@@ -1,6 +1,5 @@
 import { FlatList, View } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
-import menuItemModel from "../../interfaces";
 import MenuItemCard from "./MenuItemCard";
 import styles from "./MenuItemList.style";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -11,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { useGetMenuItemsQuery } from "../../redux/apis/menuItemApi";
 import { setMenuItem } from "../../redux/menuItemSlice";
 import { FormDialog } from "../../ui";
+import { menuItemModel } from "../../interfaces";
 
 export default function MenuItemList() {
   const [menuItems, setMenuItems] = useState<menuItemModel[]>([]);
