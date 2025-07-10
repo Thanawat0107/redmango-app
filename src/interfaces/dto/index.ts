@@ -1,3 +1,3 @@
 import { cartPickUpDto, loginDto, registerDto } from "./userDto";
-
-export { cartPickUpDto, loginDto,registerDto };
+import { menuUpsertDto } from "./menuItemDto";
+export { cartPickUpDto, loginDto,registerDto, menuUpsertDto };
