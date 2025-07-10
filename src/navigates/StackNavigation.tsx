@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
   AllOrderScreen,
   HomeScreen,
+  MainListScreen,
   MenuItemDetailScreen,
   MyOrderScreen,
   OrderDetailScreen,
@@ -86,6 +87,13 @@ export default function StackNavigation() {
           component={AllOrderScreen}
           options={{ headerShown: false }}
         />
+
+        <Stack.Screen
+          name="MainListScreen"
+          component={MainListScreen}
+          options={{ headerShown: false }}
+        />
+        
       </Stack.Navigator>
     </GestureHandlerRootView>
   );
