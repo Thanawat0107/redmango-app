@@ -7,6 +7,8 @@ import { menuItemModel } from "../../interfaces";
 import { baseUrl } from "../../common/SD";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../navigates";
+import { showMessage } from "react-native-flash-message";
+import { useDeleteMenuItemMutation } from "../../redux/apis/menuItemApi";
 
 type Props = {
   menuItem: menuItemModel;
@@ -14,12 +16,30 @@ type Props = {
 
 export default function MenuCard({ menuItem }: Props) {
   const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+  const [deleteMenuItem] = useDeleteMenuItemMutation();
+
+  const handleMenuItemDelete = async (id: number) => {
+    const response = await deleteMenuItem(id);
+
+    //console.log(response);
+
+    //ข้อความที่ส่งมาจาก backend
+    if (response.data.isSuccess) {
+      showMessage({
+        message: "Menu Item deleted successfully",
+        type: "success",
+      });
+    } else {
+      showMessage({
+        message: response.data.errorMessages,
+        type: "danger",
+      });
+    }
+  };
+
   return (
     <View>
-      <TouchableOpacity
-        style={styles.container}
-        onPress={() => navigate("MenuItemUpsert", { id: menuItem.id })}
-      >
+      <TouchableOpacity style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
             source={{
@@ -66,6 +86,7 @@ export default function MenuCard({ menuItem }: Props) {
 
         <View style={styles.actionContainer}>
           <TouchableOpacity
+            onPress={() => navigate("MenuItemUpsert", { id: menuItem.id })}
             style={{
               backgroundColor: COLORS.success,
               borderRadius: 5,
@@ -76,6 +97,7 @@ export default function MenuCard({ menuItem }: Props) {
             <AntDesign name="edit" size={20} color={COLORS.white} />
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => handleMenuItemDelete(menuItem.id)}
             style={{
               backgroundColor: COLORS.danger,
               borderRadius: 5,
