@@ -5,15 +5,21 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { COLORS } from "../../common";
 import { menuItemModel } from "../../interfaces";
 import { baseUrl } from "../../common/SD";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../navigates";
 
 type Props = {
   menuItem: menuItemModel;
 };
 
 export default function MenuCard({ menuItem }: Props) {
+  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <View>
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => navigate("MenuItemUpsert", { id: menuItem.id })}
+      >
         <View style={styles.imageContainer}>
           <Image
             source={{
